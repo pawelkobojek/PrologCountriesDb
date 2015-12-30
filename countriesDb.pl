@@ -38,6 +38,18 @@ getCountryInfo:-
 	write('Form of administration: '), write(FormOfAdministration), nl,
   write('Organizations the country belongs to: '), forall(belongs_to(Country, Org), (write(Org), write(' '))).
 
+getOrganizationInfo:-
+	write('Enter organization name (abbreviation): '), nl,
+	read_line_to_codes(user_input, Codes),
+	atom_codes(Organization, Codes),
+	organization(Organization, OrganizationFullName, Type),
+	nl,
+	write('===== ORGANIZATION INFO ====='), nl,
+	write('Organization: '), write(Organization), nl,
+	write('Full name: '), write(OrganizationFullName), nl,
+	write('Type: '), write(Type), nl,
+  write('Member countries: '), forall(belongs_to(Country, Organization), (write(Country), write(' '))).
+
 listAllCountries:-
   forall(country(Country, _, _, _), (write(Country), nl)).
 
